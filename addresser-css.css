@@ -1,0 +1,148 @@
+body {
+	margin: 0;
+}
+#searchdiv {
+	margin-bottom: 20px;
+}
+.main {
+  position: fixed;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%);
+}
+#alertPop{
+	position: fixed;
+	display: none;
+	z-index: 1051;
+	width: 360px;
+}
+.addRed{
+	border-color: #ff6666;
+	border-width: 5px;
+}
+#textbox {
+	width: 392px;
+	height: 50px;
+	font-size: 22px;
+	float: left;
+}
+
+.modal-dialog1{
+	width: auto;
+	margin:10px;
+}
+.modal-title{
+	text-align: center;
+}
+.modal-footer{
+	padding: 5px
+}
+.modal-footer button {
+	font-size: 20px
+}
+#addbtn {
+	height: 50px;
+	min-width: 50px;
+	border-radius: 0px;
+	position: relative;
+	font-size: 16px;
+}
+.contactimg{
+	border: none;
+}
+td .btn{
+  border-radius: 0;
+}
+#dialog{
+	width: 360px
+}
+.trashbtn {
+	height: 117%;
+	width: 100%;
+	border-radius: 0px;
+	border: none;
+}
+.favoritebtn{
+	height: 117%;
+	width: 100%;
+	border-radius: 0px;
+	border: none;
+}
+.forMarg{
+	margin-bottom: 10px;
+}
+.editbtn{
+	height: 117%;
+	width: 100%;
+	border-radius: 0px;
+	border: none;
+}
+.standard-td{
+	border: 0.5px solid #E5E5E5;
+	width: 124px;
+	text-align: center;
+	padding: 0;
+	border: none;
+}
+.standard-tdTEXT{
+	border: 0.5px solid #E5E5E5;
+	width: 124px;
+	text-align: center;
+	padding: 0;
+	font-size: 18px;
+}
+.TB{
+	border: 0.5px solid #E5E5E5;
+}
+.contactimg {
+	width: 100px;
+}
+.fill {
+	display: block;
+	margin-bottom: 10px;
+	width: 300px;
+	height: 50px;
+	text-align: center;
+	font-size: 22px;
+}
+#form {
+	width: 400px;
+	text-align: center;
+	max-width: 400px;
+	min-width: 300px;
+	padding: 10px 50px;
+	border: 2px solid gray;
+	border-radius: 10px;
+	font-family: raleway;
+	background-color: #fff;
+}
+#confirmbtn{
+	width: 100px;
+	height: 50px;
+	text-align: center;
+	font-size: 22px;
+}
+.btn-primary{
+	font-size: 22px;
+}
+#mehh{
+	min-width: 250px;
+	min-height: 120px;
+}
+#forAlert{
+	position: fixed;
+	left: 950px;
+	top: 60px;
+}
+.lele{
+	width: 60px;
+}
+#lele2{
+	padding-bottom: 12px;
+}
+#closebtn {
+	height: 35px;
+	width: 40px;
+	text-align: center;
+	float: right;
+}

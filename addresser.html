@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Addresser</title>
+	<link rel="stylesheet" type="text/css" href="addresser-css.css">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+</head>
+<body>
+<div class="main" onsubmit="event.preventDefault();">
+	<div id="first">
+			<div id="searchdiv">
+				<input id="textbox" type="search" placeholder="Search the Addresser">
+				<button id="addbtn" type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" data-what="add"
+				data-title="Add a Contact">
+				ADD <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+				</button>
+			</div>
+		<div id="inhere"></div>
+		<div id="phonebook" class="lego"></div>
+	</div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+	<div id="dialog" class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+			<button type="button" class="close cls" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h3 class="modal-title" id="exampleModalLabel"></h3>
+			</div>
+			<div class="modal-body">
+				<div id="inputs" class="container">
+				    <input class="fill er1" id="AddFname" placeholder="First Name" type="text">
+					<input class="fill er1" id="AddLname" placeholder="Last Name" type="text">
+					<input class="fill" id="Addnumber" placeholder="Phone Number" type="text">
+					<input class="fill" id="Addaddress" placeholder="Address" type="text">
+					<input class="fill er1" id="Addemail" placeholder="Email" type="text">
+					<input type="hidden" name="keyInp" value="">
+			    </div>
+			</div>
+			<div class="modal-footer">
+	        <button type="button" class="cls btn btn-default" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-primary saveL">Save</button>
+			</div>
+	    </div>
+	</div>
+</div>
+<div id="alertPop" class="main alert alert-danger alert-dismissible fade in" role="alert">
+	<button type="button" class="close cls" aria-label="Close">
+		<span aria-hidden="true">x</span>
+	</button>
+	<h4>Oh snap! You got an error</h4>
+	<p id="alertP"></p>
+</div>
+</body>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Mine original -->
+	<script type="text/javascript" src='addresser-js.js' ></script>
+<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>	
+</html>
