@@ -115,7 +115,7 @@ var Adrresser = (function () {
         } else if (err === 'Err-2') {
             alertP.html('Please enter a valid Email.');
             $(email2).addClass('addRed');
-        } else {
+        } else if (err === 'Err-3'){
             alertP.html('Please enter a valid Phone number.');
             $(phone2).addClass('addRed');
         }
@@ -133,15 +133,21 @@ var Adrresser = (function () {
 //Creates the HTML form of the newly created/edited contact
     function update(){
         $mainDiv.empty();
-        for (var i = 0; i < editArr.length; i++){
-            getFullName(i);
+        function getFullName(i) {
+            if (editArr[i].firstName === '' && editArr[i].lastName === '' && editArr[i].email !== '') {
+                return editArr[i].email;
+            } else if (editArr[i].firstName !== '' || editArr[i].lastName !== '') {
+                return editArr[i].firstName + ' ' + editArr[i].lastName;
+            }
+        }
+        for (var i = 0; i < editArr.length; i++) {
             var str = '<div class="forMarg" data-key="' + i + '" data-id="' + i + '">' +
                 '<input data-id="' + i + '" type="hidden" name="keySave" value=""/>' +
                 '<table class="TB">' +
                 '<tbody>' +
                 '<tr>' +
                 '<td colspan="3" rowspan="3"><img class="contactimg" src="contactimg.png"></td>' +
-                '<td colspan="6" class="standard-tdTEXT">' + getFullName() + '</td>' +
+                '<td colspan="6" class="standard-tdTEXT">' + getFullName(i) + '</td>' +
                 '</tr>' +
                 '<tr>' +
                 '<td colspan="2" rowspan="2" class="standard-td">' +
@@ -169,15 +175,7 @@ var Adrresser = (function () {
                 '</div>';
             $mainDiv.append(str);
         }
-        function getFullName(i) {
-            if (editArr[i].firstName === '' && editArr[i].lastName === '' && editArr[i].email !== '') {
-                return editArr[i].email;
-            } else if (editArr[i].firstName !== '' || editArr[i].lastName !== '') {
-                return editArr[i].firstName + ' ' + editArr[i].lastName;
-            }
-        }
     }
-
 //onclick functions
     $(document).on('click', '.editbtn, .viewbtn', function () {
         $('.fill').removeClass('addRed');
