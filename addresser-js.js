@@ -59,7 +59,7 @@ var Adrresser = (function () {
     }
 //Edit or View the contact
     API.editView = function (del) {
-        //put the values from the storage array into the formular
+        //put the values from the storage array into the modal
         keyInput = del;
         var find = editArr[keyInput];
         first2.val(find.firstName);
@@ -67,7 +67,7 @@ var Adrresser = (function () {
         phone2.val(find.phone);
         address2.val(find.address);
         email2.val(find.email);
-    }
+    };
 //Save the edited settings
     API.save = function () {
         try {
@@ -126,14 +126,14 @@ var Adrresser = (function () {
         return re.test(email);
     }
 //Tests if the phone number contains only numbers
-    API.valPhone = function (number) {
+    API.valPhone = function (number){
         var re = /^\d+$/;
         return re.test(number);
     }
 //Creates the HTML form of the newly created/edited contact
-    function update() {
+    function update(){
         $mainDiv.empty();
-        for (var i = 0; i < editArr.length; i++) {
+        for (var i = 0; i < editArr.length; i++){
             getFullName(i);
             var str = '<div class="forMarg" data-key="' + i + '" data-id="' + i + '">' +
                 '<input data-id="' + i + '" type="hidden" name="keySave" value=""/>' +
@@ -146,7 +146,7 @@ var Adrresser = (function () {
                 '<tr>' +
                 '<td colspan="2" rowspan="2" class="standard-td">' +
                 '<button data-key="' + i + '" data-toggle="modal" data-target="#exampleModal"' +
-                'data-title="Edit Contact" class="editbtn btn btn-success" type="button">' +
+                ' data-title="Edit Contact" class="editbtn btn btn-success" type="button">' +
                 '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>' +
                 '</button>' +
                 '</td>' +
@@ -157,7 +157,7 @@ var Adrresser = (function () {
                 '</td>' +
                 '<td colspan="2" rowspan="2" class="standard-td">' +
                 '<button data-toggle="modal" data-title="View Contact" data-target="#exampleModal" data-what="info"' +
-                'data-key="' + i + '" class="viewbtn favoritebtn btn btn-info" type="button" >View Contact ' +
+                ' data-key="' + i + '" class="viewbtn favoritebtn btn btn-info" type="button" >View Contact ' +
                 '<span class="glyphicon glyphicon-star" aria-hidden="true"></span>' +
                 '</button>' +
                 '</td>' +
