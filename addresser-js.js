@@ -1,67 +1,64 @@
 var Adrresser = (function () {
-    var firstName;
-    var lastName;
-    var fullName;
-    var phone;
-    var address;
-    var email;
-    var $mainDiv = $('#inhere');
-    var searchbox;
+    const $mainDiv = $('#inhere');
     var editArr = [];
     var API = {};
-    var first2 = $('#AddFname');
-    var last2 = $('#AddLname');
-    var phone2 = $('#Addnumber');
-    var address2 = $('#Addaddress');
-    var email2 = $('#Addemail');
-    var keyInput = $('[name=keyInp]').val();
-    var alertP = $('#alertP');
-    var alertPop = $('#alertPop');
+    const first2 = $('#AddFname');
+    const last2 = $('#AddLname');
+    const phone2 = $('#Addnumber');
+    const address2 = $('#Addaddress');
+    const email2 = $('#Addemail');
+    let keyInput = $('[name=keyInp]').val();
+    const alertP = $('#alertP');
+    const alertPop = $('#alertPop');
+    const textbox = $('#textbox');
+    const forms = $('.fill');
+    const modalForm = $('#exampleModal');
 //Automatic search engine
-    $('#textbox').on("keyup", function () {
-        var searchText = $('#textbox').val();
-        for (var q = 0; q < editArr.length; q++) {
-            if (editArr[q].firstName.toLowerCase().indexOf(searchText.toLowerCase()) < 0 && editArr[q].lastName.toLowerCase().indexOf(searchText.toLowerCase()) < 0 &&
-                editArr[q].address.toLowerCase().indexOf(searchText.toLowerCase()) < 0 && editArr[q].phone.indexOf(searchText) < 0 &&
-                editArr[q].email.toLowerCase().indexOf(searchText.toLowerCase()) < 0) {
-                $('[data-id = ' + q + ']').css({"display": "none"});
-            } else {
-                $('[data-id = ' + q + ']').css({"display": "block"});
-            }
-        }
+    textbox.on("keyup", function () {
+        let searchText = $('#textbox').val();
         if (searchText == '') {
             update();
+        }else{
+            $('.forMarg').css({"display": "none"});
+            for (let q = 0; q < editArr.length; q++) {
+                for (let prop in editArr[q]){
+                    if (editArr[q][prop].toLowerCase().indexOf(searchText.toLowerCase()) >= 0){
+                        $('[data-id = ' + q + ']').css({"display": "block"});
+                        break;
+                    }
+                }
+            }
         }
-    })
+    });
 //change the information in the module
-    $('#exampleModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget); // Button that triggered the modal
-        var Title = button.data('title');//get data-****
-        var what = button.data('what');
-        var modal = $(this);
+    modalForm.on('show.bs.modal', function (event) {
+        const button = $(event.relatedTarget); // Button that triggered the modal
+        const Title = button.data('title');//get data-****
+        const what = button.data('what');
+        const modal = $(this);
         modal.find('.modal-title').text(Title);
-        $('.fill').prop("readonly", false);
+        forms.prop("readonly", false);
         modal.find('.modal-footer').show();
         modal.find('.saveL').unbind().click(API.save);
         if (what === 'info') { //if the view button is clicked, also the main indicator for the view function
             modal.find('.modal-footer').hide();
-            $('.fill').prop("readonly", true);
+            forms.prop("readonly", true);
         } else if (what === 'add') { // if the add button is clicked
-            $('.fill').removeClass('addRed');
+            forms.removeClass('addRed');
             modal.find('.modal-body input').val('');
         }
     });
 //Delete a contact
     API.Delete = function (del) {
         editArr.splice(del, 1);
-        $('#textbox').val('');
+        textbox.val('');
         update();
-    }
+    };
 //Edit or View the contact
     API.editView = function (del) {
         //put the values from the storage array into the modal
         keyInput = del;
-        var find = editArr[keyInput];
+        let find = editArr[keyInput];
         first2.val(find.firstName);
         last2.val(find.lastName);
         phone2.val(find.phone);
@@ -78,14 +75,14 @@ var Adrresser = (function () {
             } else {
                 editArr.push(new person(first2.val(), last2.val(), phone2.val(), address2.val(), email2.val()));
             }
-            $('#textbox').val('');
+            textbox.val('');
             update();
-            $('#exampleModal').modal('hide');
+            modalForm.modal('hide');
             alertPop.slideUp(200);
         } catch (err) {
             API.fail(err);   //all inputs are empty
         }
-    }
+    };
 //Creates an constructor
     var person = function (firstName, lastName, phone, address, email) {
         this.firstName = firstName;
@@ -93,7 +90,7 @@ var Adrresser = (function () {
         this.phone = phone;
         this.address = address;
         this.email = email;
-    }
+    };
 
 //Checks if the user didnt enter any values into the formular
     API.checkempty = function () {
@@ -104,11 +101,11 @@ var Adrresser = (function () {
         } else if (phone2.val() !== '' && !API.valPhone(phone2.val())) {
             throw 'Err-3';
         }
-    }
+    };
 //Gives out an error if the user didnt enter values into the formular
     API.fail = function (err) {
         alertPop.slideDown(300);
-        $('.fill').removeClass('addRed');
+        forms.removeClass('addRed');
         if (err === 'Err-1') {
             alertP.html('Please put in a First name, Last name, or an email.');
             $('.er1').addClass('addRed');
@@ -119,17 +116,17 @@ var Adrresser = (function () {
             alertP.html('Please enter a valid Phone number.');
             $(phone2).addClass('addRed');
         }
-    }
+    };
 //Tests if the email accualy exists
     API.valEmail = function (email) {
-        var re = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
+        let re = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
         return re.test(email);
-    }
+    };
 //Tests if the phone number contains only numbers
     API.valPhone = function (number){
-        var re = /^\d+$/;
+        let re = /^\d+$/;
         return re.test(number);
-    }
+    };
 //Creates the HTML form of the newly created/edited contact
     function update(){
         $mainDiv.empty();
@@ -140,8 +137,8 @@ var Adrresser = (function () {
                 return editArr[i].firstName + ' ' + editArr[i].lastName;
             }
         }
-        for (var i = 0; i < editArr.length; i++) {
-            var str = '<div class="forMarg" data-key="' + i + '" data-id="' + i + '">' +
+        for (let i = 0; i < editArr.length; i++) {
+            let str = '<div class="forMarg" data-key="' + i + '" data-id="' + i + '">' +
                 '<input data-id="' + i + '" type="hidden" name="keySave" value=""/>' +
                 '<table class="TB">' +
                 '<tbody>' +
@@ -178,7 +175,7 @@ var Adrresser = (function () {
     }
 //onclick functions
     $(document).on('click', '.editbtn, .viewbtn', function () {
-        $('.fill').removeClass('addRed');
+        forms.removeClass('addRed');
         var key = $(this).data('key');
         API.editView(key);
     });

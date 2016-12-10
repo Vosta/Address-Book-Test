@@ -7,7 +7,6 @@ body {
 .main {
   position: fixed;
   left: 50%;
-  /* bring your own prefixes */
   transform: translate(-50%);
 }
 #alertPop{
@@ -21,12 +20,12 @@ body {
 	border-width: 5px;
 }
 #textbox {
+	display: inline-block;
 	width: 392px;
 	height: 50px;
 	font-size: 22px;
 	float: left;
 }
-
 .modal-dialog1{
 	width: auto;
 	margin:10px;
@@ -41,10 +40,10 @@ body {
 	font-size: 20px
 }
 #addbtn {
+	display: inline-block;
 	height: 50px;
-	min-width: 50px;
-	border-radius: 0px;
-	position: relative;
+	width: 80px;
+	border-radius: 0;
 	font-size: 16px;
 }
 .contactimg{
@@ -59,13 +58,13 @@ td .btn{
 .trashbtn {
 	height: 117%;
 	width: 100%;
-	border-radius: 0px;
+	border-radius: 0;
 	border: none;
 }
 .favoritebtn{
 	height: 117%;
 	width: 100%;
-	border-radius: 0px;
+	border-radius: 0;
 	border: none;
 }
 .forMarg{
@@ -74,11 +73,10 @@ td .btn{
 .editbtn{
 	height: 117%;
 	width: 100%;
-	border-radius: 0px;
+	border-radius: 0;
 	border: none;
 }
 .standard-td{
-	border: 0.5px solid #E5E5E5;
 	width: 124px;
 	text-align: center;
 	padding: 0;
@@ -93,6 +91,7 @@ td .btn{
 }
 .TB{
 	border: 0.5px solid #E5E5E5;
+	width: 392px;
 }
 .contactimg {
 	width: 100px;
@@ -105,40 +104,10 @@ td .btn{
 	text-align: center;
 	font-size: 22px;
 }
-#form {
-	width: 400px;
-	text-align: center;
-	max-width: 400px;
-	min-width: 300px;
-	padding: 10px 50px;
-	border: 2px solid gray;
-	border-radius: 10px;
-	font-family: raleway;
-	background-color: #fff;
-}
-#confirmbtn{
-	width: 100px;
-	height: 50px;
-	text-align: center;
-	font-size: 22px;
-}
-.btn-primary{
-	font-size: 22px;
-}
-#mehh{
-	min-width: 250px;
-	min-height: 120px;
-}
 #forAlert{
 	position: fixed;
 	left: 950px;
 	top: 60px;
-}
-.lele{
-	width: 60px;
-}
-#lele2{
-	padding-bottom: 12px;
 }
 #closebtn {
 	height: 35px;
