@@ -1,12 +1,12 @@
 var Adrresser = (function () {
     const $mainDiv = $('#inhere');
-    var editArr = [];
-    var API = {};
-    const first2 = $('#AddFname');
-    const last2 = $('#AddLname');
-    const phone2 = $('#Addnumber');
-    const address2 = $('#Addaddress');
-    const email2 = $('#Addemail');
+    let editArr = [];
+    let API = {};
+    const first = $('#AddFname');
+    const last = $('#AddLname');
+    const phone = $('#Addnumber');
+    const address = $('#Addaddress');
+    const email = $('#Addemail');
     let keyInput = $('[name=keyInp]').val();
     const alertP = $('#alertP');
     const alertPop = $('#alertPop');
@@ -21,8 +21,8 @@ var Adrresser = (function () {
         }else{
             $('.forMarg').css({"display": "none"});
             for (let q = 0; q < editArr.length; q++) {
-                for (let prop in editArr[q]){
-                    if (editArr[q][prop].toLowerCase().indexOf(searchText.toLowerCase()) >= 0){
+                for (let item in editArr[q]){
+                    if (editArr[q][item].toLowerCase().indexOf(searchText.toLowerCase()) >= 0){
                         $('[data-id = ' + q + ']').css({"display": "block"});
                         break;
                     }
@@ -59,21 +59,21 @@ var Adrresser = (function () {
         //put the values from the storage array into the modal
         keyInput = del;
         let find = editArr[keyInput];
-        first2.val(find.firstName);
-        last2.val(find.lastName);
-        phone2.val(find.phone);
-        address2.val(find.address);
-        email2.val(find.email);
+        first.val(find.firstName);
+        last.val(find.lastName);
+        phone.val(find.phone);
+        address.val(find.address);
+        email.val(find.email);
     };
 //Save the edited settings
     API.save = function () {
         try {
             API.checkempty(); //check if the inputs are empty
             if (keyInput !== '') {
-                editArr[keyInput] = new person(first2.val(), last2.val(), phone2.val(), address2.val(), email2.val());
+                editArr[keyInput] = new person(first.val(), last.val(), phone.val(), address.val(), email.val());
                 keyInput = '';
             } else {
-                editArr.push(new person(first2.val(), last2.val(), phone2.val(), address2.val(), email2.val()));
+                editArr.push(new person(first.val(), last.val(), phone.val(), address.val(), email.val()));
             }
             textbox.val('');
             update();
@@ -94,11 +94,11 @@ var Adrresser = (function () {
 
 //Checks if the user didnt enter any values into the formular
     API.checkempty = function () {
-        if (first2.val() === '' && last2.val() === '' && email2.val() === '') {
+        if (first.val() === '' && last.val() === '' && email.val() === '') {
             throw 'Err-1';
-        } else if (email2.val() !== '' && !API.valEmail(email2.val())) {
+        } else if (email.val() !== '' && !API.valEmail(email.val())) {
             throw 'Err-2';
-        } else if (phone2.val() !== '' && !API.valPhone(phone2.val())) {
+        } else if (phone.val() !== '' && !API.valPhone(phone.val())) {
             throw 'Err-3';
         }
     };
@@ -111,10 +111,10 @@ var Adrresser = (function () {
             $('.er1').addClass('addRed');
         } else if (err === 'Err-2') {
             alertP.html('Please enter a valid Email.');
-            $(email2).addClass('addRed');
+            $(email).addClass('addRed');
         } else if (err === 'Err-3'){
             alertP.html('Please enter a valid Phone number.');
-            $(phone2).addClass('addRed');
+            $(phone).addClass('addRed');
         }
     };
 //Tests if the email accualy exists
@@ -176,11 +176,11 @@ var Adrresser = (function () {
 //onclick functions
     $(document).on('click', '.editbtn, .viewbtn', function () {
         forms.removeClass('addRed');
-        var key = $(this).data('key');
+        let key = $(this).data('key');
         API.editView(key);
     });
     $(document).on('click', '.trashbtn', function () {
-        var key = $(this).data('key');
+        let key = $(this).data('key');
         API.Delete(key);
     });
     $(document).on('click', '.cls', function () {
